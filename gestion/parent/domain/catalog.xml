@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/C:/Users/Ezequiel/Desktop/xmlcombinado.xsd" uri="src/main/resources/jaxb/ClienteXML/xmlcombinado.xsd"/>
+    <system systemId="file:/E:/Repositorio/com.naoset.crm/parent/domain/src/main/resources/jaxb/ClienteXML/xmlcombinado.xsd" uri="src/main/resources/jaxb/Clientes/xmlcombinado.xsd"/>
+</catalog>

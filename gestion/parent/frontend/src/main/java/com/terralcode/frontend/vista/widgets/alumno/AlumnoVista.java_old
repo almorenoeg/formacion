@@ -1,0 +1,419 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package com.terralcode.frontend.vista.widgets.alumno;
+
+import com.naoset.framework.frontend.data.converters.DateToCalendarConverter;
+import com.naoset.framework.frontend.view.widgets.Widget;
+import com.naoset.framework.frontend.view.window.Window;
+import com.terralcode.framework.domain.Direccion;
+import com.terralcode.framework.domain.alumno.Alumno;
+import com.terralcode.framework.domain.catalogos.Colectivo;
+import com.terralcode.framework.domain.catalogos.EstadoOcupacional;
+import com.terralcode.framework.domain.catalogos.Sexo;
+import com.terralcode.gestion.business.catalogos.EstadoOcupacionalService;
+import com.vaadin.cdi.CDIView;
+import com.vaadin.data.fieldgroup.BeanFieldGroup;
+import com.vaadin.data.fieldgroup.FieldGroup;
+import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.server.FontAwesome;
+import com.vaadin.server.Page;
+import com.vaadin.server.WebBrowser;
+import com.vaadin.shared.ui.MarginInfo;
+import com.vaadin.shared.ui.datefield.Resolution;
+import com.vaadin.ui.ComboBox;
+import com.vaadin.ui.Component;
+import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.OptionGroup;
+import com.vaadin.ui.PopupDateField;
+import com.vaadin.ui.TabSheet;
+import com.vaadin.ui.TextField;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.themes.ValoTheme;
+import java.util.Locale;
+import javax.inject.Inject;
+
+/**
+ *
+ * @author almoreno
+ */
+@CDIView
+public class AlumnoVista extends Widget {
+    
+    Alumno alumno;
+    
+    FieldGroup fieldGroup;
+    
+    // Alumnos
+    private TextField idField;
+    private TextField nombreField;
+    private TextField apellido1Field;
+    private TextField apellido2Field;
+    private TextField dniField;
+    Sexo sexo;
+    private OptionGroup sexoField;
+    private OptionGroup exentoPracticasField;
+    private OptionGroup estadosOcupacionalField;
+    private OptionGroup derivadoINEMField;
+    private OptionGroup reservaField;
+    private OptionGroup discapacidadField;
+    private PopupDateField fechaNacimientoField;
+    
+   
+    private TextField numeroSSGGField;
+//    private EstadoOcupacional estadoOcupacional;
+    private Colectivo colectivo;
+//    private Boolean derivadoINEM;
+//    private Boolean exentoPracticas;
+    private Boolean reserva;
+    private Boolean discapacidad;
+    
+    
+    // Direccion
+    protected TextField direccionField;
+    protected TextField direccion2Field;
+    protected TextField ciudadField;
+    protected TextField provinciaField;
+    protected TextField codigoPostalField;
+    
+    // Empresa
+    protected TextField nombreEmpresaField;
+    protected TextField  cifNifEmpresaField;
+    protected TextField  telefonoField;
+    private Direccion direccionEmpresaField;
+    protected TextField  numeroEmpleadosField;
+
+    MenuBar menubar = new MenuBar();
+    //private final MenuBar.MenuItem addOperation;
+    private final MenuBar.MenuItem editOperation;
+    private final MenuBar.MenuItem saveOperation;
+    private final MenuBar.MenuItem trashOperation;
+    
+    TabSheet tabDatos;
+
+    protected BeanItemContainer<EstadoOcupacional> containerEstadosOcupacional;
+    
+    private FormLayout mainLayout;
+
+    Window window;
+    
+    @Inject
+    EstadoOcupacionalService estadoOcupacionalService;
+
+    public AlumnoVista() {
+        super();
+        saveOperation = menubar.addItem("", FontAwesome.SAVE, save());
+        trashOperation = menubar.addItem("", FontAwesome.TRASH_O, delete());
+        editOperation = menubar.addItem("", FontAwesome.EDIT, editar());
+    }
+    
+//    public void open(Alumno alumno) {
+//        this.alumno = alumno;
+//        bindModel();
+//        open();
+//    }
+    
+    public void open() {
+
+//        WebBrowser webBrowser = Page.getCurrent().getWebBrowser();
+//        window = new Window(this);
+//        window.addStyleName("profile-window");
+//        window.setModal(true);
+//        if (webBrowser.getScreenWidth() < 1024) {
+//            window.setSizeFull();
+//        } else {
+//            window.setHeight(90.0f, Unit.PERCENTAGE);
+//            window.setWidth(90.0f, Unit.PERCENTAGE);
+//        }
+        UI.getCurrent().addWindow(window);
+        window.focus();
+//        return window;
+    }
+    
+    public void open(Alumno alumno) {
+        bind(alumno);
+        open();
+    }
+
+    @Override
+    protected Component buildContent() {
+        buildModel();
+        addMenuItems(saveOperation, trashOperation);
+       
+        return buildAlumnoLayout();
+    }
+
+    @Override
+    protected String caption() {
+        return "Ficha de Alumno";
+    }
+
+    private FormLayout buildAlumnoLayout() {
+        mainLayout = new FormLayout();
+        mainLayout.addStyleName(ValoTheme.FORMLAYOUT_LIGHT);
+        mainLayout.setMargin(new MarginInfo(true, false, false, false));
+        
+        buildDatosAlumno();
+        
+        tabDatos = new TabSheet();
+        mainLayout.addComponent(tabDatos);         
+        
+        buildDatosAlumnoExtras();
+        buildEmpresaTab();
+        buildDireccion();
+
+        return mainLayout;
+    }
+
+    private MenuBar.Command save() {
+        return new MenuBar.Command() {
+
+            @Override
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+
+//                if (fieldGroup.isValid()) {
+//                    try {
+//                        fieldGroup.commit();
+//                        customerCRMService.edit(customer);
+//                        Notification.show("Datos guardados correctamente");
+//                    } catch (Validator.InvalidValueException e) {
+//                        Notification.show(e.getMessage(), Notification.Type.ERROR_MESSAGE);
+//                    } catch (FieldGroup.CommitException e) {
+//                        Notification.show(e.getMessage(), Notification.Type.ERROR_MESSAGE);
+//                    }
+//                } else {
+//                    Notification.show("Complete los datos obligatorios", Notification.Type.ERROR_MESSAGE);
+//                }
+
+            }
+        };
+    }
+
+    private MenuBar.Command delete() {
+        return new MenuBar.Command() {
+
+            @Override
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+            }
+        };
+    }
+    
+    private MenuBar.Command editar() {
+        return new MenuBar.Command() {
+
+            @Override
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+            }
+        };
+    }
+
+    private void buildDatosAlumno() {
+        nombreField = new TextField("Nombre");
+        apellido1Field = new TextField("Primer Apellido");
+        apellido2Field = new TextField("Segundo Apellido");
+//        idField = new TextField("Código");
+        dniField = new TextField("CIF");
+        numeroSSGGField = new TextField("SSGG");
+        
+        sexoField = new OptionGroup("Sexo");
+        sexoField.addItem(Boolean.FALSE);
+        sexoField.setItemCaption(Boolean.FALSE, "Mujer");
+        sexoField.addItem(Boolean.TRUE);
+        sexoField.setItemCaption(Boolean.TRUE, "Hombre");
+        sexoField.addStyleName("horizontal");
+        
+        discapacidadField = new OptionGroup("Discapacitado");
+        discapacidadField.addItem(Boolean.FALSE);
+        discapacidadField.setItemCaption(Boolean.FALSE, "Si");
+        discapacidadField.addItem(Boolean.TRUE);
+        discapacidadField.setItemCaption(Boolean.TRUE, "No");
+        discapacidadField.select("No");
+        discapacidadField.addStyleName("horizontal");
+        
+        fechaNacimientoField = new PopupDateField("Fecha Nacimiento");
+        fechaNacimientoField.setTextFieldEnabled(false);
+        fechaNacimientoField.setLocale(new Locale("es", "ES"));
+        fechaNacimientoField.setResolution(Resolution.MINUTE);
+        fechaNacimientoField.setDateFormat("dd/MM/yyyy");
+        fechaNacimientoField.setConverter(new DateToCalendarConverter());
+        
+        HorizontalLayout dniSsggLayout = new HorizontalLayout();
+        
+        dniSsggLayout.addComponent(dniField);
+        dniSsggLayout.addComponent(numeroSSGGField);
+        mainLayout.addComponent(dniSsggLayout);
+        
+        HorizontalLayout nombresLayout = new HorizontalLayout();
+        
+        nombresLayout.addComponent(nombreField);
+        nombresLayout.addComponent(apellido1Field);
+        nombresLayout.addComponent(apellido2Field);        
+        mainLayout.addComponent(nombresLayout);
+        
+        mainLayout.addComponent(sexoField);        
+        mainLayout.addComponent(fechaNacimientoField);        
+        mainLayout.addComponent(discapacidadField);
+        
+    }
+    
+    
+//    private void buildTabEmpresa() {
+//        
+//        
+//        // Create the first tab
+////        VerticalLayout layoutTab = new VerticalLayout();
+////        layoutTab.addComponent(new Embedded(null, new ThemeResource("img/planets/Mercury.jpg")));
+//        EmpresaVista empresa = new EmpresaVista();
+////        tabEmpresa.addTab(empresa, "Empresa", new ThemeResource("img/planets/Mercury_symbol.png"));
+//        tabDatos.addTab(empresa, "Empresa", FontAwesome.INSTITUTION);
+//
+//// This tab gets its caption from the component caption
+////        VerticalLayout tab2 = new VerticalLayout();
+////        tab2.addComponent(new Embedded(null, new ThemeResource("img/planets/Venus.jpg")));
+////        tab2.setCaption("Venus");
+////        tabEmpresa.addTab(tab2).setIcon( new ThemeResource("img/planets/Venus_symbol.png"));
+//
+//    }
+    
+//    private void buildTabDireccion() {
+//
+//        DireccionVista direccion = new DireccionVista(new Direccion());
+//
+//        tabDatos.addTab(direccion, "Dirección", FontAwesome.BOOK);
+//
+//
+//    }
+    
+    private void buildDatosAlumnoExtras(){
+        
+        VerticalLayout layoutTabDireccion = new VerticalLayout();
+        
+        exentoPracticasField = new OptionGroup("Exento practicas");
+        exentoPracticasField.addItem(Boolean.FALSE);
+        exentoPracticasField.setItemCaption(Boolean.FALSE, "Si");
+        exentoPracticasField.addItem(Boolean.TRUE);
+        exentoPracticasField.setItemCaption(Boolean.TRUE, "No");
+        exentoPracticasField.addStyleName("horizontal");
+        
+        derivadoINEMField = new OptionGroup("Derivado INEM");
+        derivadoINEMField.addItem(Boolean.FALSE);
+        derivadoINEMField.setItemCaption(Boolean.FALSE, "Si");
+        derivadoINEMField.addItem(Boolean.TRUE);
+        derivadoINEMField.setItemCaption(Boolean.TRUE, "No");
+        derivadoINEMField.addStyleName("horizontal");
+        
+        reservaField = new OptionGroup("Reserva");
+        reservaField.addItem(Boolean.FALSE);
+        reservaField.setItemCaption(Boolean.FALSE, "Si");
+        reservaField.addItem(Boolean.TRUE);
+        reservaField.setItemCaption(Boolean.TRUE, "No");
+        reservaField.addStyleName("horizontal");
+        
+        
+        mainLayout.addComponent(exentoPracticasField);
+        mainLayout.addComponent(derivadoINEMField);
+        mainLayout.addComponent(reservaField);
+        
+        mainLayout.addComponent(createComboEstadoOcupacional());
+        
+        tabDatos.addTab(layoutTabDireccion, "Datos Extras", FontAwesome.ARCHIVE);
+
+    }
+    
+    private void buildDireccion(){
+        
+        VerticalLayout layoutTabDireccion = new VerticalLayout();
+        
+        direccionField = new TextField("Dirección");
+        direccion2Field = new TextField("Dirección 2");
+        ciudadField = new TextField("Ciudad");
+        provinciaField = new TextField("Provincia");
+        codigoPostalField = new TextField("Código Postal");
+
+        layoutTabDireccion.addComponent(direccionField);
+        layoutTabDireccion.addComponent(direccion2Field);
+        layoutTabDireccion.addComponent(ciudadField);
+        layoutTabDireccion.addComponent(provinciaField);
+        layoutTabDireccion.addComponent(codigoPostalField);
+        
+        tabDatos.addTab(layoutTabDireccion, "Dirección", FontAwesome.BOOK);
+
+    }
+    
+    private void buildEmpresaTab(){
+        
+        VerticalLayout layoutTabEmpresa = new VerticalLayout();
+    
+        nombreEmpresaField = new TextField("Nombre");
+        cifNifEmpresaField = new TextField("C.I.F.");
+        telefonoField = new TextField("Telefono");
+//        direccionEmpresaField = new TextField("Provincia");
+        numeroEmpleadosField = new TextField("Número empleados");
+
+        layoutTabEmpresa.addComponent(nombreEmpresaField);
+        layoutTabEmpresa.addComponent(cifNifEmpresaField);
+        layoutTabEmpresa.addComponent(telefonoField);
+   
+        layoutTabEmpresa.addComponent(numeroEmpleadosField);
+        
+        tabDatos.addTab(layoutTabEmpresa, "Empresa", FontAwesome.INSTITUTION);
+
+    }
+    
+ 
+    
+    private void bind(Alumno model) throws FieldGroup.BindException {
+        this.alumno = model;       
+        
+        initContainer();
+        
+        fieldGroup = new BeanFieldGroup<>(Alumno.class);
+//        fieldGroup.bind(idField, "code");
+        fieldGroup.bind(nombreField, "nombre");
+        fieldGroup.bind(dniField, "dni");
+        fieldGroup.bind(fechaNacimientoField, "fechaNacimiento");
+        
+    }
+    
+    /**
+     * Inicialización de los contenedores
+     */
+    private void buildModel() {
+        containerEstadosOcupacional = new BeanItemContainer<>(EstadoOcupacional.class);
+    }
+    
+//    private Component buildEstadoOcupacional() {
+//        
+//        estadosOcupacionalField = new OptionGroup("Estado Ocupacional");
+//        estadosOcupacionalField.setContainerDataSource(containerEstadosOcupacional);
+//        estadosOcupacionalField.addStyleName("horizontal");
+//        estadosOcupacionalField.setWidth("100%");
+//        
+//        ComboBox combo = new ComboBox("Estado Ocupacional", estadoOcupacionalService.findAll());
+//        combo.setItemCaptionPropertyId("description");
+////        combo.
+//        
+//        return combo;
+//    }
+    
+    private Component createComboEstadoOcupacional() {
+        ComboBox combo = new ComboBox("Estado Ocupacional");
+        combo.setItemCaptionPropertyId("description");
+        combo.setContainerDataSource(containerEstadosOcupacional);
+        combo.setTextInputAllowed(false);
+        combo.setInputPrompt("Seleccione una opción...");
+        return combo;
+    }
+    
+    private void initContainer() {
+        containerEstadosOcupacional.addAll(estadoOcupacionalService.findAll());
+        containerEstadosOcupacional.sort(new Object[]{"name"}, new boolean[]{true});
+    }
+    
+}

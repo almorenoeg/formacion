@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jaxb:bindings xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" version="2.1">
+  <!--
+
+Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
+Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+Generado el: 2017.05.15 a las 11:01:53 PM CEST 
+
+  -->
+  <jaxb:bindings if-exists="true" scd="x-schema::">
+    <jaxb:schemaBindings map="false">
+      <jaxb:package name="com.terralcode.gestion.domain.Clientes"/>
+    </jaxb:schemaBindings>
+    <jaxb:bindings scd="Clientes">
+      <jaxb:class ref="com.terralcode.gestion.domain.Clientes.Clientes"/>
+    </jaxb:bindings>
+    <jaxb:bindings scd="Cliente">
+      <jaxb:class ref="com.terralcode.gestion.domain.Clientes.Cliente"/>
+    </jaxb:bindings>
+    <jaxb:bindings scd="Fincas">
+      <jaxb:class ref="com.terralcode.gestion.domain.Clientes.Fincas"/>
+    </jaxb:bindings>
+    <jaxb:bindings scd="Finca">
+      <jaxb:class ref="com.terralcode.gestion.domain.Clientes.Finca"/>
+    </jaxb:bindings>
+    <jaxb:bindings scd="UltimasVentas">
+      <jaxb:class ref="com.terralcode.gestion.domain.Clientes.UltimasVentas"/>
+    </jaxb:bindings>
+    <jaxb:bindings scd="Venta">
+      <jaxb:class ref="com.terralcode.gestion.domain.Clientes.Venta"/>
+    </jaxb:bindings>
+    <jaxb:bindings scd="Visitas">
+      <jaxb:class ref="com.terralcode.gestion.domain.Clientes.Visitas"/>
+    </jaxb:bindings>
+    <jaxb:bindings scd="Visita">
+      <jaxb:class ref="com.terralcode.gestion.domain.Clientes.Visita"/>
+    </jaxb:bindings>
+    <jaxb:bindings scd="Quejas">
+      <jaxb:class ref="com.terralcode.gestion.domain.Clientes.Quejas"/>
+    </jaxb:bindings>
+    <jaxb:bindings scd="Queja">
+      <jaxb:class ref="com.terralcode.gestion.domain.Clientes.Queja"/>
+    </jaxb:bindings>
+  </jaxb:bindings>
+</jaxb:bindings>

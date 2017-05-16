@@ -1,0 +1,40 @@
+package com.naoset.framework.business.notification.email;
+
+import com.naoset.framework.business.notification.NotificationService;
+import com.naoset.framework.domain.notification.Notification;
+import com.naoset.framework.domain.notification.email.Email;
+import java.util.Calendar;
+import java.util.List;
+import javax.ejb.Schedule;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
+import javax.inject.Inject;
+
+/**
+ *
+ * @author Ezequiel
+ */
+//@Startup()
+@Singleton
+public class EmailNotificationScheduler {
+
+    @Inject
+    NotificationService notificationService;
+    @Inject
+    EmailService emailService;
+
+    @Schedule(hour="*", minute="*/1", persistent = false)
+    public void sendPendingEmails()
+    {
+        System.out.println("Sending pending emails " + Calendar.getInstance());
+        List<Notification> unsentEmailNotifications = notificationService.getUnsentEmailNotifications();
+        for (Notification unsentEmailNotification : unsentEmailNotifications) {
+            Email email = new Email();
+            email.setTo(unsentEmailNotification.getUser().getEmail());
+            email.setSubject(unsentEmailNotification.getAction());
+            email.setMessage(unsentEmailNotification.getContent());
+            emailService.send(email);
+            unsentEmailNotification.setEmailSent(true);            
+        }
+    }
+}

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="com.terralcode.trace.persistenceContext" transaction-type="JTA">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <jta-data-source>java:jboss/datasources/MySQLDS</jta-data-source>
+    <!--    <class>com.terralcode.gestion.domain.Sample</class>
+    <class>com.terralcode.gestion.domain.appointment.Appointment</class>
+    <class>com.terralcode.gestion.domain.appointment.AppointmentReason</class>
+    <class>com.terralcode.gestion.domain.appointment.AppointmentStatus</class>
+    <class>com.terralcode.gestion.domain.appointment.Complaint</class>
+    <class>com.terralcode.gestion.domain.customer.Species</class>
+    <class>com.terralcode.gestion.domain.trade.Trade</class>-->
+    <!--    <class>com.naoset.framework.domain.commons.contactinfo.ContactInfo</class>
+    <class>com.naoset.framework.domain.commons.contactinfo.address.ComplexAddress</class>
+    <class>com.naoset.framework.domain.commons.contactinfo.address.Country</class>
+    <class>com.naoset.framework.domain.commons.contactinfo.address.PlainAddress</class>
+    <class>com.naoset.framework.domain.commons.contactinfo.address.Province</class>
+    <class>com.naoset.framework.domain.commons.contactinfo.address.TypeWay</class>
+    <class>com.naoset.framework.domain.commons.personal.Person</class>
+    <class>com.naoset.framework.domain.company.Company</class>
+    <class>com.naoset.framework.domain.company.billinginfo.BillingInfo</class>
+    <class>com.naoset.framework.domain.company.employee.Employee</class>
+    <class>com.naoset.framework.domain.company.relationship.customer.Customer</class>
+    <class>com.naoset.framework.domain.company.relationship.customer.CustomerStatus</class>
+    <class>com.naoset.framework.domain.company.relationship.customer.CustomerType</class>
+    <class>com.naoset.framework.domain.company.relationship.provider.Provider3</class>
+    <class>com.naoset.framework.domain.company.relationship.provider.UnsubscribeCause</class>
+    <class>com.naoset.framework.domain.finantial.bankaccount.BankAccount</class>
+    <class>com.naoset.framework.domain.finantial.paymentmethod.PaymentMethod</class>
+    <class>com.naoset.framework.domain.order.Order</class>
+    <class>com.naoset.framework.domain.order.OrderDetail</class>
+    <class>com.naoset.framework.domain.order.delivery.DeliveryType</class>-->
+    <class>com.terralcode.gestion.domain.event.Event</class>
+    <class>com.terralcode.framework.domain.profile.User</class>
+    <!--<class>com.terralcode.gestion.domain.customer.CustomerCRM</class>-->
+    <!--    <class>com.naoset.framework.domain.commons.timing.TimeLapse</class>
+    <class>com.terralcode.gestion.domain.appointment.ComplaintType</class>
+    <class>com.terralcode.gestion.domain.sales.Sales</class>
+    <class>com.terralcode.gestion.domain.appointment.AppointmentPurpose</class>
+    <class>com.terralcode.gestion.domain.appointment.AppointmentType</class>-->
+    <class>com.terralcode.gestion.domain.notification.AppointmentNotification</class>
+    <class>com.terralcode.gestion.domain.syncEngine.ChangeLog</class>
+    <class>com.terralcode.framework.domain.notification.Notification</class>
+    <class>com.terralcode.gestion.domain.syncEngine.SyncSession</class>
+    <class>com.terralcode.framework.domain.catalogos.CategoriaTrabajador</class>
+    <class>com.terralcode.framework.domain.catalogos.Colectivo</class>
+    <class>com.terralcode.framework.domain.catalogos.EstadoOcupacional</class>
+    <class>com.terralcode.framework.domain.catalogos.Sexo</class>
+    <class>com.terralcode.framework.domain.alumno.Alumno</class>
+    <!--<class>com.terralcode.framework.domain.alumno.DatosExtrasAlumno</class>-->
+    <class>com.terralcode.framework.domain.Direccion</class>
+    <class>com.terralcode.framework.domain.Empresa</class>
+    <class>com.terralcode.framework.domain.Persona</class>
+    <class>com.terralcode.framework.domain.alumno.EstadosAlumnos</class>
+    <class>com.terralcode.framework.domain.alumno.NivelEstudios</class>
+    <class>com.terralcode.framework.domain.log.Registro</class>
+    <class>com.terralcode.framework.domain.profesor.Profesor</class>
+    <class>com.terralcode.framework.domain.role.RoleUser</class>
+    <class>com.terralcode.framework.domain.role.TipoRole</class>
+    <class>com.terralcode.framework.domain.catalogos.Sexo</class>
+    <class>com.terralcode.framework.domain.grupoformativo.GrupoFormativo</class>
+    <class>com.terralcode.framework.domain.grupoformativo.EstadoGrupo</class>
+    <!--<class>com.terralcode.framework.domain.alumno.EstadosAlumnos</class>-->
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties>
+      <!--<property name="hibernate.enable_lazy_load_no_trans" value="true"/>-->
+      <property name="hibernate.hbm2ddl.auto" value="drop-and-create"/>
+      <!--<property name="hibernate.hbm2ddl.auto" value="update"/>-->
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+      <!--<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2008Dialect"/><!-->
+      <!--<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>-->
+    </properties>
+  </persistence-unit>
+</persistence>
