@@ -40,8 +40,8 @@
     <class>com.terralcode.gestion.domain.appointment.AppointmentType</class>-->
     <class>com.terralcode.gestion.domain.notification.AppointmentNotification</class>
     <class>com.terralcode.gestion.domain.syncEngine.ChangeLog</class>
-    <class>com.terralcode.framework.domain.notification.Notification</class>
     <class>com.terralcode.gestion.domain.syncEngine.SyncSession</class>
+    <class>com.terralcode.framework.domain.notification.Notification</class>
     <class>com.terralcode.framework.domain.catalogos.CategoriaTrabajador</class>
     <class>com.terralcode.framework.domain.catalogos.Colectivo</class>
     <class>com.terralcode.framework.domain.catalogos.EstadoOcupacional</class>
@@ -64,8 +64,8 @@
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <!--<property name="hibernate.enable_lazy_load_no_trans" value="true"/>-->
-      <property name="hibernate.hbm2ddl.auto" value="drop-and-create"/>
-      <!--<property name="hibernate.hbm2ddl.auto" value="update"/>-->
+      <!--<property name="hibernate.hbm2ddl.auto" value="drop-and-create"/>-->
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
       <!--<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2008Dialect"/><!-->
       <!--<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>-->

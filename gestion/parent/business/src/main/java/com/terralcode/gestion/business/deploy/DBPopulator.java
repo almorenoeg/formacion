@@ -101,7 +101,7 @@ public class DBPopulator {
             populateTestUsers();
             populateCatalogs();
   
-//            populateAlumnos();
+            populateAlumnos();
 //            populateNugestTrades();
             
         }

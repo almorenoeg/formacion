@@ -33,8 +33,8 @@ public final class OptimizedConnectorBundleLoaderFactory extends
         eagerConnectors.add(PanelConnector.class.getName());
         eagerConnectors.add(LabelConnector.class.getName());
         eagerConnectors.add(WindowConnector.class.getName());
-        eagerConnectors.add(ComboBoxConnector.class.getName());
-        eagerConnectors.add(OptionGroupConnector.class.getName());
+//        eagerConnectors.add(ComboBoxConnector.class.getName());
+//        eagerConnectors.add(OptionGroupConnector.class.getName());
     }
 
     @Override

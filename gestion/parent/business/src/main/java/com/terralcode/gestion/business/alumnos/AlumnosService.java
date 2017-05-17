@@ -31,4 +31,17 @@ public class AlumnosService extends CRUD<Alumno> {
         
         return query.getResultList();
     }
+    
+    public List<Alumno> findByState(Integer state) {
+        String jpql = "SELECT c "
+                + "FROM Alumno c "
+                + "where " 
+                + "c.estadoAlumno = :state "
+                + "order by c.nombre";
+        
+        Query query = getEntityManager().createQuery(jpql);
+        query.setParameter("state", state);
+        
+        return query.getResultList();
+    }
 }

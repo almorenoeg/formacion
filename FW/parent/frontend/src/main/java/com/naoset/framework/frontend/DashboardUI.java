@@ -31,7 +31,7 @@ import java.util.logging.Logger;
 import javax.inject.Inject;
 
 @Theme("dashboard")
-//@Widgetset("com.terralcode.trace.frontend.DashboardWidgetSet")
+@Widgetset("com.terralcode.trace.frontend.DashboardWidgetSet")
 @Title("Gestion Alumnos")
 @SuppressWarnings("serial")
 @CDIUI("")
@@ -79,8 +79,7 @@ public final class DashboardUI extends UI {
             navigator = new Navigator(this, this);
             navigator.addProvider(viewProvider);
         }
-        User user = (User) VaadinSession.getCurrent().getAttribute(
-                User.class.getName());
+        User user = (User) VaadinSession.getCurrent().getAttribute(User.class.getName());
         if (user != null) {
             // Authenticated user           
             removeStyleName("loginview");
@@ -100,8 +99,7 @@ public final class DashboardUI extends UI {
                     event.getPassword());
 
             if (user != null) {
-                VaadinSession.getCurrent().setAttribute(
-                        User.class.getName(),
+                VaadinSession.getCurrent().setAttribute(User.class.getName(),
                         user);
                 updateContent();
             } else {

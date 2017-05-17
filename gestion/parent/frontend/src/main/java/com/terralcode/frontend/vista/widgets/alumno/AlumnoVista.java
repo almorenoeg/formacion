@@ -17,6 +17,7 @@ import com.terralcode.framework.domain.catalogos.EstadoOcupacional;
 import com.terralcode.framework.domain.catalogos.Sexo;
 import com.terralcode.gestion.business.alumnos.NivelEstudioService;
 import com.terralcode.gestion.business.catalogos.EstadoOcupacionalService;
+import com.vaadin.cdi.CDIView;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.data.util.BeanItemContainer;
@@ -44,6 +45,7 @@ import javax.inject.Inject;
  *
  * @author almoreno
  */
+@CDIView
 public class AlumnoVista extends Widget {
     
     Alumno alumno;
@@ -58,7 +60,7 @@ public class AlumnoVista extends Widget {
     private TextField dniField;
     private TextField emailField;
     private TextField movilAlumnoField;
-    Sexo sexo;
+    private Sexo sexo;
     private OptionGroup sexoField;
     private OptionGroup exentoPracticasField;
     private OptionGroup estadosOcupacionalField;

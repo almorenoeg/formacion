@@ -10,6 +10,7 @@ import com.naoset.framework.frontend.view.widgets.Widget;
 import com.terralcode.framework.domain.alumno.Alumno;
 import com.terralcode.frontend.vista.widgets.alumno.AlumnoVista;
 import com.terralcode.gestion.business.alumnos.AlumnosService;
+import com.vaadin.cdi.CDIView;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.event.FieldEvents;
 import com.vaadin.server.FontAwesome;
@@ -25,6 +26,7 @@ import javax.inject.Inject;
  *
  * @author almoreno
  */
+@CDIView
 public class ListadoAlumnosView extends Widget {
 
     private VerticalLayout mainLayout;

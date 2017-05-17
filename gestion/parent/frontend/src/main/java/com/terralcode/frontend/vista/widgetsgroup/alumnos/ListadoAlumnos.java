@@ -8,6 +8,7 @@ package com.terralcode.frontend.vista.widgetsgroup.alumnos;
 
 import com.naoset.framework.frontend.view.widgetsgroup.WidgetGroup;
 import com.terralcode.frontend.vista.widgets.listados.ListadoAlumnosView;
+import com.vaadin.cdi.CDIView;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
@@ -15,6 +16,7 @@ import javax.inject.Inject;
  *
  * @author almoreno
  */
+@CDIView
 public class ListadoAlumnos extends WidgetGroup{
 
      @Inject

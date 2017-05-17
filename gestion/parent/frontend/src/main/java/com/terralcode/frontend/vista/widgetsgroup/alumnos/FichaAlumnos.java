@@ -17,13 +17,13 @@ import javax.inject.Inject;
  * @author almoreno
  */
 @CDIView
-public class Alumnos extends WidgetGroup {
+public class FichaAlumnos extends WidgetGroup {
     @Inject
     AlumnoVista alumnosVista;
     
     @PostConstruct
     void init() {
-        setTitle("Alumnos");
+        setTitle("Ficha de Alumno");
         addWidgetPanel(alumnosVista, "dashboard-panel-slot-full");
         toggleMaximized(alumnosVista.getParent().getParent(), true);
     }
